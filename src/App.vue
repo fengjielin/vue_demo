@@ -1,10 +1,13 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/asyn">Asyn</router-link> |
+      <router-link to="/home">Home</router-link> |
+      <router-link to="/about">About</router-link> <br />
+      <router-link to="/teachingPlan/termTeachingPlan">授课计划</router-link> |
     </div>
-    <router-view/>
+    <hr />
+    <router-view class="router_view" />
   </div>
 </template>
 
@@ -15,6 +18,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background: #eaeff3;
 }
 
 #nav {
@@ -28,5 +32,9 @@
       color: #42b983;
     }
   }
+}
+.router_view {
+  padding: 16px;
+  box-sizing: border-box;
 }
 </style>
