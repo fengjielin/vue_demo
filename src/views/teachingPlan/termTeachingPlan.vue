@@ -21,33 +21,28 @@
           <label>年度</label>
           <Select
             transfer
-            placeholder="请选择年度"
             filterable
             v-model="searchData.year"
+            @change="search"
             style="width: 200px; margin-right: 24px"
           >
-            <Option value="-1">全部</Option>
-            <Option
-              :value="year.paramCd"
-              :key="year.paramCd"
-              v-for="year in years"
-              >{{ year.paramDesc }}</Option
-            >
+            <Option :value="item.id" :key="item.id" v-for="item in years">{{
+              item.year
+            }}</Option>
           </Select>
 
-          <label>人工培养方案</label>
+          <label>人才培养方案</label>
           <Select
             transfer
-            placeholder="请选择年度"
             filterable
-            v-model="searchData.year"
+            v-model="searchData.trainPlan"
             style="width: 200px"
           >
             <Option
-              :value="year.paramCd"
-              :key="year.paramCd"
-              v-for="year in years"
-              >{{ year.paramDesc }}</Option
+              :value="item.id"
+              :key="item.id"
+              v-for="item in trainPlans"
+              >{{ item.trainPlan }}</Option
             >
           </Select>
         </div>
@@ -55,13 +50,13 @@
     </div>
     <div class="term_teach_plan_box">
       <div class="box_left">
-        <Menu theme="light" :active-name="activeName">
+        <Menu
+          theme="light"
+          :active-name="searchData.termId"
+          @on-select="handleTerm"
+        >
           <MenuGroup title="学期名称">
-            <MenuItem
-              :name="index"
-              v-for="(item, index) in terms"
-              :key="item.id"
-            >
+            <MenuItem :name="item.id" v-for="item in terms" :key="item.id">
               {{ item.termName }}
             </MenuItem>
           </MenuGroup>
@@ -69,19 +64,32 @@
       </div>
       <div class="box_right">
         <div class="box_tabs">
-          <Tabs :value="activeTabs">
+          <Tabs :value="searchData.courseTypeId" @on-click="handleCourseType">
             <TabPane
               :label="item.typeName"
-              :name="index + ''"
-              v-for="(item, index) in courseType"
-              :key="index"
+              :name="item.id + ''"
+              v-for="item in courseType"
+              :key="item.id"
             >
               <div class="tab_pane">
                 <div
                   class="item_box"
-                  v-for="(item, index) in 20"
+                  v-for="(item, index) in course"
                   :key="index"
-                ></div>
+                >
+                  <div class="item_img">
+                    <img
+                      src="../../assets/coures-default.jpg"
+                      alt=""
+                      width="100%"
+                      height="100%"
+                    />
+                  </div>
+                  <div class="item_desc">
+                    <span class="desc_title">课程：</span>
+                    <span class="desc_cont">{{ item.courseName }}</span>
+                  </div>
+                </div>
               </div>
             </TabPane>
           </Tabs>
@@ -96,29 +104,49 @@ export default {
   data() {
     return {
       searchData: {
-        year: "-1",
+        year: "",
+        trainPlan: "",
+        termId: "",
+        courseTypeId: "",
       },
-      activeName: "0",
-      activeTabs: "0",
       years: [],
+      trainPlans: [],
       terms: [],
       courseType: [],
+      course: [],
       userinfo: "",
     };
   },
   created() {
-    this.getTermByYear();
-    this.getCourseType();
+    this.getYear();
   },
   mounted() {
     // let state = JSON.parse(sessionStorage.state);
     // this.userinfo = state.sysLogin;
     // this.getBaseYear();
   },
+  watch: {
+    year(val) {
+      this.getTrainPlanByYear();
+      this.getTermByYear();
+    },
+  },
+  computed: {
+    year() {
+      return this.searchData.year;
+    },
+  },
   methods: {
-    //根据年度查询培养方案
-    searchTrainPlan() {
-      this.page.pageNum = 1;
+    search() {},
+
+    handleTerm(name) {
+      this.searchData.termId = name;
+      this.getCourseByYearAndTrainPlanAndTermAndCourseType();
+    },
+
+    handleCourseType(name) {
+      this.searchData.courseTypeId = name;
+      this.getCourseByYearAndTrainPlanAndTermAndCourseType();
     },
 
     //获取年度
@@ -136,15 +164,45 @@ export default {
       this.dealRequest("param/getParamsByParamType", data, callback);
     },
 
+    // 获取年度
+    getYear() {
+      let data = {};
+      let callback = (res) => {
+        if (res.state) {
+          this.years = res.data;
+          this.searchData.year = res.data[0].id;
+        }
+      };
+      this.MockRequest("/teachPlan/years", data, callback);
+    },
+
+    //根据年度获取人才培养方案
+    getTrainPlanByYear() {
+      let data = {
+        year: this.searchData.year,
+      };
+      let callback = (res) => {
+        console.log(res);
+        if (res.state) {
+          this.trainPlans = res.data;
+          this.searchData.trainPlan = res.data[0].id;
+        }
+      };
+      this.MockRequest("/teachPlan/trainPlan", data, callback);
+    },
+
     // 根据年度获取学期
     getTermByYear() {
       let data = {};
       let callback = (res) => {
-        console.log(res);
-        this.terms = res.data;
-        this.$nextTick(function () {
-          this.activeName = 0;
-        });
+        // console.log(res);
+        if (res.state) {
+          this.terms = res.data;
+          this.$nextTick(function () {
+            this.searchData.termId = res.data[0].id;
+          });
+          this.getCourseType();
+        }
       };
       this.MockRequest("/teachPlan/term", data, callback);
     },
@@ -153,13 +211,37 @@ export default {
     getCourseType() {
       let data = {};
       let callback = (res) => {
-        console.log(res);
-        this.courseType = res.data;
-        this.$nextTick(function () {
-          this.activeTabs = "0";
-        });
+        // console.log(res);
+        if (res.state) {
+          this.courseType = res.data;
+          this.$nextTick(function () {
+            this.searchData.courseTypeId = res.data[0].id + "";
+          });
+          this.getCourseByYearAndTrainPlanAndTermAndCourseType();
+        }
       };
       this.MockRequest("/teachPlan/types", data, callback);
+    },
+
+    // 根据年度和人才培养方案和学期和课程类别来获取课程
+    getCourseByYearAndTrainPlanAndTermAndCourseType() {
+      let data = {
+        year: this.searchData.year,
+        trainPlan: this.searchData.trainPlan,
+        term: this.searchData.termId,
+        courseType: "",
+      };
+      let callback = (res) => {
+        console.log(res);
+        if (res.state) {
+          this.course = res.data;
+        }
+      };
+      this.MockRequest(
+        "/teachPlan/getCourseByYearAndTrainPlanAndTerm",
+        data,
+        callback
+      );
     },
 
     // 处理请求
@@ -228,10 +310,8 @@ export default {
 }
 .term_teach_plan .term_teach_plan_box {
   margin-top: 16px;
-  /* background-color: #fff; */
   box-sizing: border-box;
   padding-bottom: 16px;
-  /* height: 700px; */
   display: flex;
   justify-content: space-between;
 }
@@ -245,33 +325,51 @@ export default {
 
 .term_teach_plan .box_right {
   flex: 1;
-  width: 120px;
+  width: 20px;
   background-color: #fff;
-  overflow: hidden;
 }
 
-.term_teach_plan .box_tabs {
-  height: 52px;
-}
 .term_teach_plan .tab_pane {
-  padding: 16px;
   box-sizing: border-box;
-  /* overflow: auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; */
-  /* display: grid;
-  grid-template-columns: repeat(auto-fill, 280px);
-  grid-template-rows: repeat(auto-fill, 169px);
-  grid-column-gap: 32px;
-  grid-row-gap: 16px; */
+  justify-content: flex-start;
 }
 .term_teach_plan .item_box {
   width: 280px;
-  height: 169px;
-  background-color: aqua;
-  margin-bottom: 16px;
+  height: 199px;
+  margin: 0 16px 16px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.item_box .item_img {
+  width: 100%;
+  height: 144px;
+  background-color: aqua;
+}
+
+.item_box .item_desc {
+  width: 100%;
+  height: 56px;
+  padding: 0 12px;
+  line-height: 56px;
+  text-align: left;
+}
+
+.desc_title,
+.desc_cont {
+  font-size: 14px;
+}
+.desc_title {
+  color: #999999;
+}
+.desc_cont {
+  color: #333333;
 }
 
 .term_teach_plan .formInput {
