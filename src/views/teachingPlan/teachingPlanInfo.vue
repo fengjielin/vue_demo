@@ -89,7 +89,6 @@
             border
             height="500"
           ></Table> -->
-          <!-- 121 -->
           <table>
             <thead>
               <tr>
@@ -134,32 +133,32 @@
                 <td>{{ explainData[0].opinion }}</td>
               </tr>
               <tr>
-                <td colspan="2" rowspan="2">教学大纲</td>
-                <td>名称</td>
+                <td class="bgColor" colspan="2" rowspan="2">教学大纲</td>
+                <td class="bgColor">名称</td>
                 <td colspan="3"></td>
                 <td colspan="8" rowspan="6"></td>
               </tr>
               <tr>
-                <td>编号</td>
+                <td class="bgColor">编号</td>
                 <td></td>
-                <td>版次</td>
+                <td class="bgColor">版次</td>
                 <td></td>
               </tr>
               <tr>
-                <td colspan="2" rowspan="2">使用教材</td>
-                <td>名称</td>
+                <td class="bgColor" colspan="2" rowspan="2">使用教材</td>
+                <td class="bgColor">名称</td>
                 <td colspan="3"></td>
               </tr>
               <tr>
-                <td>版本</td>
+                <td class="bgColor">版本</td>
                 <td colspan="3"></td>
               </tr>
               <tr>
-                <td colspan="2">主要参考资料</td>
+                <td class="bgColor" colspan="2">主要参考资料</td>
                 <td colspan="4"></td>
               </tr>
               <tr>
-                <td colspan="2">参观见习安排</td>
+                <td class="bgColor" colspan="2">参观见习安排</td>
                 <td colspan="4"></td>
               </tr>
             </tbody>
@@ -337,7 +336,7 @@ export default {
           title: "主要内容",
           key: "name",
           align: "center",
-          width: 497,
+          mixWidth: 400,
         },
         {
           title: "教学安排及学时分配",
@@ -382,7 +381,7 @@ export default {
           width: 134,
         },
       ],
-      arrangeData: [],
+      arrangeData: [{}],
     };
   },
   methods: {
@@ -393,7 +392,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .info_content {
   margin-top: 16px;
   padding-top: 32px;
@@ -422,8 +421,31 @@ export default {
   border-collapse: collapse;
   text-align: center;
 }
+.info_explain table thead,
+.info_explain table .bgColor {
+  background-color: #ecf8ff;
+}
 .info_explain td,
 .info_explain th {
   border: 1px solid #999999;
+  height: 52px;
+}
+
+.info_arrange .ivu-table-header th {
+  background-color: #ecf8ff;
+}
+
+.info_arrange .ivu-table-wrapper-with-border {
+  border: 1px solid #999;
+  border-right: 0;
+  border-bottom: 0;
+}
+.ivu-table-border:after,
+.ivu-table:before {
+  background-color: #999999;
+}
+.info_arrange th,
+.info_arrange td {
+  border-color: #999999;
 }
 </style>
