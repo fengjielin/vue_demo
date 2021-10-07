@@ -15,7 +15,7 @@
       <div class="info_title">理论教学2021~2022学年 第一学期</div>
       <div class="info_btn">
         <ButtonGroup
-          style="margin: 20px auto 32px; display: flex; justify-content: center"
+          style="margin: 20px auto 0px; display: flex; justify-content: center"
         >
           <Button
             v-for="(item, index) in btn"
@@ -33,48 +33,49 @@
           <Form :model="formItem" :label-width="90">
             <FormItem label="课程名称">
               <Input
-                v-model="formItem.input"
+                v-model="formItem.courseName"
                 placeholder="请输入"
+                maxlength="40"
                 style="width: 380px"
               ></Input>
             </FormItem>
             <FormItem label="授课班级">
-              <Select v-model="formItem.select">
+              <Select v-model="formItem.teachingClass">
                 <Option value="beijing">New York</Option>
                 <Option value="shanghai">London</Option>
                 <Option value="shenzhen">Sydney</Option>
               </Select>
             </FormItem>
             <FormItem label="任课老师">
-              <Select v-model="formItem.select">
+              <Select v-model="formItem.teacher">
                 <Option value="beijing">New York</Option>
                 <Option value="shanghai">London</Option>
                 <Option value="shenzhen">Sydney</Option>
               </Select>
             </FormItem>
             <FormItem label="教研组组长">
-              <Select v-model="formItem.select">
+              <Select v-model="formItem.teachResearchGroupLeader">
                 <Option value="beijing">New York</Option>
                 <Option value="shanghai">London</Option>
                 <Option value="shenzhen">Sydney</Option>
               </Select>
             </FormItem>
             <FormItem label="教务科科长">
-              <Select v-model="formItem.select">
+              <Select v-model="formItem.teachResearchGroupChief">
                 <Option value="beijing">New York</Option>
                 <Option value="shanghai">London</Option>
                 <Option value="shenzhen">Sydney</Option>
               </Select>
             </FormItem>
             <FormItem label="教学系主任">
-              <Select v-model="formItem.select">
+              <Select v-model="formItem.teachingDepartmentDirector">
                 <Option value="beijing">New York</Option>
                 <Option value="shanghai">London</Option>
                 <Option value="shenzhen">Sydney</Option>
               </Select>
             </FormItem>
             <FormItem label="教学副校长">
-              <Select v-model="formItem.select">
+              <Select v-model="formItem.teachingVicePrincipal">
                 <Option value="beijing">New York</Option>
                 <Option value="shanghai">London</Option>
                 <Option value="shenzhen">Sydney</Option>
@@ -83,97 +84,183 @@
           </Form>
         </div>
         <div class="info_explain" v-else-if="activeIndex === 1">
-          <!-- <Table
-            :columns="explainColumns"
-            :data="explainData"
-            border
-            height="500"
-          ></Table> -->
-          <table>
-            <thead>
-              <tr>
-                <th rowspan="3">本课程总课时</th>
-                <th rowspan="3">已授课时</th>
-                <th colspan="3">本学期</th>
-                <th colspan="9">本学期课时分配</th>
-              </tr>
-              <tr>
-                <th rowspan="2">计划课时</th>
-                <th rowspan="2">实际教学周数</th>
-                <th rowspan="2">本课程周课数</th>
-                <th rowspan="2">实际课时</th>
-                <th colspan="6">其中</th>
-                <th rowspan="2">余（缺）课时</th>
-                <th rowspan="2">余（缺）课时处理意见</th>
-              </tr>
-              <tr>
-                <th>讲授课</th>
-                <th>习题课</th>
-                <th>实验课</th>
-                <th>参观见习</th>
-                <th>考核</th>
-                <th>机动课时</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{{ explainData[0].classHour }}</td>
-                <td>{{ explainData[0].alreadyClassHour }}</td>
-                <td>{{ explainData[0].planClassHour }}</td>
-                <td>{{ explainData[0].actualCourseNum }}</td>
-                <td>{{ explainData[0].weekCourseNum }}</td>
-                <td>{{ explainData[0].actualClassHour }}</td>
-                <td>{{ explainData[0].lectureCourse }}</td>
-                <td>{{ explainData[0].exampleCourse }}</td>
-                <td>{{ explainData[0].experimentalCourse }}</td>
-                <td>{{ explainData[0].visitInternship }}</td>
-                <td>{{ explainData[0].examine }}</td>
-                <td>{{ explainData[0].flexibleClassHour }}</td>
-                <td>{{ explainData[0].absenceClassHour }}</td>
-                <td>{{ explainData[0].opinion }}</td>
-              </tr>
-              <tr>
-                <td class="bgColor" colspan="2" rowspan="2">教学大纲</td>
-                <td class="bgColor">名称</td>
-                <td colspan="3"></td>
-                <td colspan="8" rowspan="6"></td>
-              </tr>
-              <tr>
-                <td class="bgColor">编号</td>
-                <td></td>
-                <td class="bgColor">版次</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="bgColor" colspan="2" rowspan="2">使用教材</td>
-                <td class="bgColor">名称</td>
-                <td colspan="3"></td>
-              </tr>
-              <tr>
-                <td class="bgColor">版本</td>
-                <td colspan="3"></td>
-              </tr>
-              <tr>
-                <td class="bgColor" colspan="2">主要参考资料</td>
-                <td colspan="4"></td>
-              </tr>
-              <tr>
-                <td class="bgColor" colspan="2">参观见习安排</td>
-                <td colspan="4"></td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="table">
+            <table>
+              <thead>
+                <tr>
+                  <th rowspan="3">本课程总课时</th>
+                  <th rowspan="3">已授课时</th>
+                  <th colspan="3">本学期</th>
+                  <th colspan="9">本学期课时分配</th>
+                </tr>
+                <tr>
+                  <th rowspan="2">计划课时</th>
+                  <th rowspan="2">实际教学周数</th>
+                  <th rowspan="2">本课程周课数</th>
+                  <th rowspan="2">实际课时</th>
+                  <th colspan="6">其中</th>
+                  <th rowspan="2">余（缺）课时</th>
+                  <th rowspan="2">余（缺）课时处理意见</th>
+                </tr>
+                <tr>
+                  <th>讲授课</th>
+                  <th>习题课</th>
+                  <th>实验课</th>
+                  <th>参观见习</th>
+                  <th>考核</th>
+                  <th>机动课时</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ explainData[0].classHour }}</td>
+                  <td>{{ explainData[0].alreadyClassHour }}</td>
+                  <td>{{ explainData[0].planClassHour }}</td>
+                  <td>{{ explainData[0].actualCourseNum }}</td>
+                  <td>{{ explainData[0].weekCourseNum }}</td>
+                  <td>{{ explainData[0].actualClassHour }}</td>
+                  <td>{{ explainData[0].lectureCourse }}</td>
+                  <td>{{ explainData[0].exampleCourse }}</td>
+                  <td>{{ explainData[0].experimentalCourse }}</td>
+                  <td>{{ explainData[0].visitInternship }}</td>
+                  <td>{{ explainData[0].examine }}</td>
+                  <td>{{ explainData[0].flexibleClassHour }}</td>
+                  <td>{{ explainData[0].absenceClassHour }}</td>
+                  <td>{{ explainData[0].opinion }}</td>
+                </tr>
+                <tr>
+                  <td class="bgColor" colspan="2" rowspan="2">教学大纲</td>
+                  <td class="bgColor">名称</td>
+                  <td colspan="3"></td>
+                  <td colspan="8" rowspan="6">
+                    <div class="explain_cell">说明：</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="bgColor">编号</td>
+                  <td></td>
+                  <td class="bgColor">版次</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="bgColor" colspan="2" rowspan="2">使用教材</td>
+                  <td class="bgColor">名称</td>
+                  <td colspan="3"></td>
+                </tr>
+                <tr>
+                  <td class="bgColor">版本</td>
+                  <td colspan="3"></td>
+                </tr>
+                <tr style="height: 104px">
+                  <td class="bgColor" colspan="2">主要参考资料</td>
+                  <td colspan="4"></td>
+                </tr>
+                <tr style="height: 104px">
+                  <td class="bgColor" colspan="2">参观见习安排</td>
+                  <td colspan="4"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="save_btn">
+            <Button type="primary">保存</Button>
+          </div>
         </div>
         <div class="info_arrange" v-else-if="activeIndex === 2">
+          <div class="add_btn">
+            <Button type="primary" @click="show">添加</Button>
+          </div>
           <Table
             :columns="arrangeColumns"
             :data="arrangeData"
             border
-            height="500"
+            disabled-hover
           ></Table>
         </div>
       </div>
     </div>
+
+    <Modal v-model="modalFlag" :title="title" :mask-closable="false">
+      <div class="modal">
+        <Form
+          :model="modelData"
+          ref="formValidate"
+          :rules="ruleValidate"
+          :label-width="90"
+        >
+          <FormItem label="周/次" prop="week">
+            <Input
+              v-model="modelData.week"
+              placeholder="请输入"
+              maxlength="40"
+              style="width: 380px"
+            ></Input>
+          </FormItem>
+          <FormItem label="章节（课题）" prop="chapter">
+            <Input
+              v-model="modelData.chapter"
+              placeholder="请输入"
+              maxlength="40"
+              style="width: 380px"
+            ></Input>
+          </FormItem>
+          <FormItem label="主要内容" prop="mainContent">
+            <Input
+              v-model="modelData.mainContent"
+              placeholder="请输入"
+              maxlength="40"
+              style="width: 380px"
+            ></Input>
+          </FormItem>
+          <FormItem> 教学安排及学时分配：</FormItem>
+          <FormItem label="讲授课" prop="lectureCourse">
+            <InputNumber
+              :min="0"
+              v-model="modelData.lectureCourse"
+              placeholder="请输入"
+              style="width: 380px"
+            ></InputNumber>
+          </FormItem>
+          <FormItem label="习题课" prop="exampleCourse">
+            <InputNumber
+              :min="0"
+              v-model="modelData.exampleCourse"
+              placeholder="请输入"
+              style="width: 380px"
+            ></InputNumber>
+          </FormItem>
+          <FormItem label="实验课" prop="experimentalCourse">
+            <InputNumber
+              :min="0"
+              v-model="modelData.experimentalCourse"
+              placeholder="请输入"
+              style="width: 380px"
+            ></InputNumber>
+          </FormItem>
+          <FormItem label="参观见习" prop="visitInternship">
+            <InputNumber
+              :min="0"
+              v-model="modelData.visitInternship"
+              placeholder="请输入"
+              style="width: 380px"
+            ></InputNumber>
+          </FormItem>
+          <FormItem label="考核" prop="examine">
+            <InputNumber
+              :min="0"
+              v-model="modelData.examine"
+              placeholder="请输入"
+              style="width: 380px"
+            ></InputNumber>
+          </FormItem>
+        </Form>
+      </div>
+      <div slot="footer" style="text-align: center">
+        <Button @click="cancel">取消</Button>
+        <Button type="primary" @click="ok" :loading="loading">保存</Button>
+      </div>
+    </Modal>
   </div>
 </template>
 
@@ -186,114 +273,15 @@ export default {
       activeIndex: 0,
 
       formItem: {
-        input: "",
-        select: "",
+        courseName: "", // 课程名称
+        teachingClass: "", // 授课班级
+        teacher: "", // 任课老师
+        teachResearchGroupLeader: "", // 教研组组长
+        teachResearchGroupChief: "", // 教务科科长
+        teachingDepartmentDirector: "", //教学系主任
+        teachingVicePrincipal: "", // 教学副校长
       },
 
-      explainColumns: [
-        {
-          title: "本课程总课时",
-          key: "name",
-          align: "center",
-          width: 134,
-        },
-        {
-          title: "已授课时",
-          key: "name",
-          align: "center",
-          width: 134,
-        },
-        {
-          title: "本学期",
-          align: "center",
-          children: [
-            {
-              title: "计划课时",
-              key: "age",
-              align: "center",
-              width: 134,
-            },
-            {
-              title: "实际教学周数",
-              key: "age",
-              align: "center",
-              width: 134,
-            },
-            {
-              title: "本课程周课数",
-              key: "age",
-              align: "center",
-              width: 134,
-            },
-          ],
-        },
-        {
-          title: "本学期课时分配",
-          align: "center",
-          children: [
-            {
-              title: "实际课时",
-              key: "caddress",
-              align: "center",
-              width: 134,
-            },
-            {
-              title: "其中",
-              align: "center",
-              children: [
-                {
-                  title: "讲授课",
-                  key: "street",
-                  align: "center",
-                  width: 134,
-                },
-                {
-                  title: "习题课",
-                  key: "street",
-                  align: "center",
-                  width: 134,
-                },
-                {
-                  title: "实验课",
-                  key: "street",
-                  align: "center",
-                  width: 134,
-                },
-                {
-                  title: "参观见习",
-                  key: "street",
-                  align: "center",
-                  width: 134,
-                },
-                {
-                  title: "考核",
-                  key: "street",
-                  align: "center",
-                  width: 134,
-                },
-                {
-                  title: "机动课时",
-                  key: "street",
-                  align: "center",
-                  width: 134,
-                },
-              ],
-            },
-            {
-              title: "余（缺）课时",
-              key: "caddress",
-              align: "center",
-              width: 134,
-            },
-            {
-              title: "余（缺）课时处理意见",
-              key: "caddress",
-              align: "center",
-              width: 134,
-            },
-          ],
-        },
-      ],
       explainData: [
         {
           classHour: "141", // 本课程总课时
@@ -322,19 +310,19 @@ export default {
         },
         {
           title: "周/次",
-          key: "name",
+          key: "week",
           align: "center",
           width: 134,
         },
         {
           title: "章节（课题）",
-          key: "name",
+          key: "chapter",
           align: "center",
           width: 300,
         },
         {
           title: "主要内容",
-          key: "name",
+          key: "mainContent",
           align: "center",
           mixWidth: 400,
         },
@@ -344,31 +332,31 @@ export default {
           children: [
             {
               title: "讲授课",
-              key: "age",
+              key: "lectureCourse",
               align: "center",
               width: 134,
             },
             {
               title: "习题课",
-              key: "age",
+              key: "exampleCourse",
               align: "center",
               width: 134,
             },
             {
               title: "实验课",
-              key: "age",
+              key: "experimentalCourse",
               align: "center",
               width: 134,
             },
             {
               title: "参观见习",
-              key: "age",
+              key: "visitInternship",
               align: "center",
               width: 134,
             },
             {
               title: "考核",
-              key: "age",
+              key: "examine",
               align: "center",
               width: 134,
             },
@@ -376,17 +364,220 @@ export default {
         },
         {
           title: "操作",
-          key: "name",
           align: "center",
           width: 134,
+          render: (h, params) => {
+            return h("span", [
+              h(
+                "a",
+                {
+                  props: {},
+                  style: {
+                    marginRight: "22px",
+                    color: "#1B81FF",
+                  },
+                  on: {
+                    click: () => {
+                      this.show(params.row);
+                    },
+                  },
+                },
+                "编辑"
+              ),
+              h(
+                "a",
+                {
+                  props: {},
+                  style: {
+                    color: "#FF7A7A",
+                  },
+                  on: {
+                    click: () => {
+                      this.removeIndicator(params.row);
+                    },
+                  },
+                },
+                "删除"
+              ),
+            ]);
+          },
         },
       ],
-      arrangeData: [{}],
+      arrangeData: [
+        {
+          id: 1,
+          week: "2", // 周次
+          chapter: "第2章", // 章节
+          mainContent: "主题班会", // 主要内容
+          lectureCourse: 25, // 讲授课
+          exampleCourse: 30, // 习题课
+          experimentalCourse: 20, // 实验课
+          visitInternship: 10, //参观见习
+          examine: 2, // 考核
+        },
+        {},
+        {},
+        {},
+      ],
+
+      loading: false,
+      modalFlag: false,
+      title: "",
+      ruleValidate: {
+        week: [
+          {
+            required: true,
+            message: "请输入周次",
+            trigger: "blur",
+          },
+          {
+            type: "string",
+            pattern: "[^\\s+]",
+            message: "不能输入空格字符串",
+            trigger: "blur",
+          },
+        ],
+        chapter: [
+          {
+            required: true,
+            message: "请输入章节（课题）",
+            trigger: "blur",
+          },
+          {
+            type: "string",
+            pattern: "[^\\s+]",
+            message: "不能输入空格字符串",
+            trigger: "blur",
+          },
+        ],
+        mainContent: [
+          {
+            required: true,
+            message: "请输入主要内容",
+            trigger: "blur",
+          },
+          {
+            type: "string",
+            pattern: "[^\\s+]",
+            message: "不能输入空格字符串",
+            trigger: "blur",
+          },
+        ],
+        lectureCourse: [
+          {
+            required: true,
+            type: "number",
+            message: "请输入讲授课的学时分配",
+            trigger: "blur",
+          },
+        ],
+        exampleCourse: [
+          {
+            required: true,
+            type: "number",
+            message: "请输入习题课的学时分配",
+            trigger: "blur",
+          },
+        ],
+        experimentalCourse: [
+          {
+            required: true,
+            type: "number",
+            message: "请输入实验课的学时分配",
+            trigger: "blur",
+          },
+        ],
+        visitInternship: [
+          {
+            required: true,
+            type: "number",
+            message: "请输入参观见习的学时分配",
+            trigger: "blur",
+          },
+        ],
+        examine: [
+          {
+            required: true,
+            type: "number",
+            message: "请输入考核的学时分配",
+            trigger: "blur",
+          },
+        ],
+      },
+      modelData: {
+        week: "", // 周次
+        chapter: "", // 章节
+        mainContent: "", // 主要内容
+        lectureCourse: 0, // 讲授课
+        exampleCourse: 0, // 习题课
+        experimentalCourse: 0, // 实验课
+        visitInternship: 0, //参观见习
+        examine: 0, // 考核
+      },
     };
   },
   methods: {
     changeBtn(index) {
       this.activeIndex = index;
+    },
+
+    // 添加、编辑
+    show(row) {
+      this.modalFlag = true;
+      if (row.id) {
+        this.title = "编辑";
+        this.modelData.week = row.week;
+        this.modelData.chapter = row.chapter;
+        this.modelData.mainContent = row.mainContent;
+        this.modelData.lectureCourse = row.lectureCourse;
+        this.modelData.exampleCourse = row.exampleCourse;
+        this.modelData.experimentalCourse = row.experimentalCourse;
+        this.modelData.visitInternship = row.visitInternship;
+        this.modelData.examine = row.examine;
+      } else {
+        this.title = "添加";
+        this.modelData.week = "";
+        this.modelData.chapter = "";
+        this.modelData.mainContent = "";
+        this.modelData.lectureCourse = 0;
+        this.modelData.exampleCourse = 0;
+        this.modelData.experimentalCourse = 0;
+        this.modelData.visitInternship = 0;
+        this.modelData.examine = 0;
+      }
+    },
+    // 删除
+    removeIndicator(row) {
+      this.$Modal.confirm({
+        closable: true,
+        title: "提示",
+        content: "<p>确认要删除吗?</p>",
+        onOk: () => {
+          console.log("删除");
+        },
+      });
+    },
+
+    ok() {
+      let flag = true;
+      this.$refs["formValidate"].validate((valid) => {
+        if (!valid) {
+          this.$Modal.error({
+            title: "提示",
+            content: "表单填写有误",
+            closable: true,
+          });
+          flag = false;
+        }
+      });
+      if (!flag) {
+        return;
+      }
+      this.modalFlag = false;
+    },
+    cancel() {
+      this.modalFlag = false;
+      this.$refs["formValidate"].resetFields();
     },
   },
 };
@@ -409,17 +600,22 @@ export default {
 .info_form {
   display: flex;
   justify-content: center;
+  margin-top: 32px;
 }
-.info_explain,
+.info_explain .table,
+.info_arrange {
+  padding: 32px 16px 0;
+  box-sizing: border-box;
+}
 .info_arrange {
   padding: 0 16px 16px;
-  box-sizing: border-box;
 }
 
 .info_explain table {
   width: 100%;
   border-collapse: collapse;
   text-align: center;
+  margin-bottom: 52px;
 }
 .info_explain table thead,
 .info_explain table .bgColor {
@@ -429,6 +625,26 @@ export default {
 .info_explain th {
   border: 1px solid #999999;
   height: 52px;
+}
+
+.info_explain .explain_cell {
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  padding: 8px 16px;
+  box-sizing: border-box;
+}
+
+.info_explain .save_btn {
+  border-top: 1px solid #ddd;
+  padding: 12px 88px;
+  box-sizing: border-box;
+}
+
+.info_arrange .add_btn {
+  padding: 10px 0;
+  box-sizing: border-box;
+  text-align: right;
 }
 
 .info_arrange .ivu-table-header th {

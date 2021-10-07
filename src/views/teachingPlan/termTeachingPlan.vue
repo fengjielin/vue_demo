@@ -76,6 +76,7 @@
                   class="item_box"
                   v-for="(item, index) in course"
                   :key="index"
+                  @click="clickCourse"
                 >
                   <div class="item_img">
                     <img
@@ -137,6 +138,16 @@ export default {
     },
   },
   methods: {
+    // 点击课程
+    clickCourse() {
+      this.$router.push({
+        name: "teachingPlanInfo",
+        query: {
+          // attachId: row.id,
+        },
+      });
+    },
+
     search() {},
 
     handleTerm(name) {
@@ -275,12 +286,10 @@ export default {
             callback(res.data);
           } else {
             console.error(res.data);
-            // that.$Message.error(res.data.msg);
           }
         })
         .catch(function (err) {
           console.error(err);
-          // that.$Message.error(err.message);
         });
     },
   },
