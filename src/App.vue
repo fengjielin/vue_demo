@@ -3,12 +3,13 @@
     <div id="nav">
       <router-link to="/asyn">Asyn</router-link> |
       <router-link to="/home">Home</router-link> |
-      <router-link to="/about">About</router-link> <br />
+      <router-link to="/about">About</router-link> |
       <router-link to="/teachingPlan/termTeachingPlan">授课计划</router-link> |
       <router-link to="/teachingPlan/teachingPlanInfo"
         >授课计划信息</router-link
       >
-      |
+      |<br>
+      <router-link to="/tree/treeDemo">treeDemo</router-link> |
     </div>
     <hr />
     <router-view class="router_view" />

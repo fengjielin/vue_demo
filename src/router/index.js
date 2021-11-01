@@ -7,7 +7,7 @@ Vue.use(VueRouter)
 const routes = [{
     path: '/',
     name: '',
-    redirect: '/teachingPlan/termTeachingPlan'
+    redirect: '/tree/treeDemo'
   },
   {
     path: '/home',
@@ -36,6 +36,11 @@ const routes = [{
     path: '/teachingPlan/teachingPlanInfo',
     name: 'teachingPlanInfo',
     component: () => import('../views/teachingPlan/teachingPlanInfo.vue')
+  },
+  {
+    path: '/tree/treeDemo',
+    name: 'treeDemo',
+    component: () => import('../views/tree/treeDemo.vue')
   }
 ]
 

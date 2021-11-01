@@ -1,0 +1,321 @@
+[
+  {
+    "id": 538,
+    "chapterNum": "01",
+    "chapterName": "逻辑代数基础",
+    "courseId": 1595,
+    "saveTime": "2021-11-01",
+    "statusCd": "S01",
+    "shStatusCd": "S01",
+    "classStatusCd": "S01",
+    "chapterType": "T02",
+    "children": [
+      {
+        "id": 546,
+        "chapterNum": "01",
+        "chapterName": "概述",
+        "courseId": 1595,
+        "saveTime": "2021-11-01",
+        "statusCd": "S01",
+        "parentId": 538,
+        "shStatusCd": "S01",
+        "classStatusCd": "S01",
+        "chapterType": "T02"
+      },
+      {
+        "id": 547,
+        "chapterNum": "02",
+        "chapterName": "逻辑代数中的三种基本运算",
+        "courseId": 1595,
+        "saveTime": "2021-11-01",
+        "statusCd": "S01",
+        "parentId": 538,
+        "shStatusCd": "S01",
+        "classStatusCd": "S01",
+        "chapterType": "T02"
+      },
+      {
+        "id": 550,
+        "chapterNum": "03",
+        "chapterName": "逻辑代数的基本公式和常用公式",
+        "courseId": 1595,
+        "saveTime": "2021-11-01",
+        "statusCd": "S01",
+        "parentId": 538,
+        "shStatusCd": "S01",
+        "classStatusCd": "S01",
+        "chapterType": "T02"
+      },
+      {
+        "id": 551,
+        "chapterNum": "04",
+        "chapterName": "逻辑代数的基本定理",
+        "courseId": 1595,
+        "saveTime": "2021-11-01",
+        "statusCd": "S01",
+        "parentId": 538,
+        "shStatusCd": "S01",
+        "classStatusCd": "S01",
+        "chapterType": "T02"
+      },
+      {
+        "id": 553,
+        "chapterNum": "05",
+        "chapterName": "逻辑函数及其表示方法★",
+        "courseId": 1595,
+        "saveTime": "2021-11-01",
+        "statusCd": "S01",
+        "parentId": 538,
+        "shStatusCd": "S01",
+        "classStatusCd": "S01",
+        "chapterType": "T02"
+      },
+      {
+        "id": 554,
+        "chapterNum": "06",
+        "chapterName": "逻辑函数的公式化简法★",
+        "courseId": 1595,
+        "saveTime": "2021-11-01",
+        "statusCd": "S01",
+        "parentId": 538,
+        "shStatusCd": "S01",
+        "classStatusCd": "S01",
+        "chapterType": "T02"
+      },
+      {
+        "id": 555,
+        "chapterNum": "07",
+        "chapterName": "逻辑函数的卡诺图化简法★",
+        "courseId": 1595,
+        "saveTime": "2021-11-01",
+        "statusCd": "S01",
+        "parentId": 538,
+        "shStatusCd": "S01",
+        "classStatusCd": "S01",
+        "chapterType": "T02"
+      },
+      {
+        "id": 556,
+        "chapterNum": "08",
+        "chapterName": "具有无关项的逻辑函数及其化简",
+        "courseId": 1595,
+        "saveTime": "2021-11-01",
+        "statusCd": "S01",
+        "parentId": 538,
+        "shStatusCd": "S01",
+        "classStatusCd": "S01",
+        "chapterType": "T02"
+      }
+    ]
+  },
+  {
+    "id": 541,
+    "chapterNum": "02",
+    "chapterName": "门电路",
+    "courseId": 1595,
+    "saveTime": "2021-11-01",
+    "statusCd": "S01",
+    "shStatusCd": "S01",
+    "classStatusCd": "S01",
+    "chapterType": "T02",
+    "children": [
+      {
+        "id": 557,
+        "chapterNum": "01",
+        "chapterName": "概述",
+        "courseId": 1595,
+        "saveTime": "2021-11-01",
+        "statusCd": "S01",
+        "parentId": 541,
+        "shStatusCd": "S01",
+        "classStatusCd": "S01",
+        "chapterType": "T02"
+      },
+      {
+        "id": 558,
+        "chapterNum": "02",
+        "chapterName": "半导体二极管和三极管的开关特性",
+        "courseId": 1595,
+        "saveTime": "2021-11-01",
+        "statusCd": "S01",
+        "parentId": 541,
+        "shStatusCd": "S01",
+        "classStatusCd": "S01",
+        "chapterType": "T02"
+      },
+      {
+        "id": 559,
+        "chapterNum": "03",
+        "chapterName": "最简单的与、或、非门电路",
+        "courseId": 1595,
+        "saveTime": "2021-11-01",
+        "statusCd": "S01",
+        "parentId": 541,
+        "shStatusCd": "S01",
+        "classStatusCd": "S01",
+        "chapterType": "T02"
+      },
+      {
+        "id": 560,
+        "chapterNum": "04",
+        "chapterName": "TTL门电路",
+        "courseId": 1595,
+        "saveTime": "2021-11-01",
+        "statusCd": "S01",
+        "parentId": 541,
+        "shStatusCd": "S01",
+        "classStatusCd": "S01",
+        "chapterType": "T02"
+      }
+    ]
+  },
+  {
+    "id": 542,
+    "chapterNum": "03",
+    "chapterName": "组合逻辑电路",
+    "courseId": 1595,
+    "saveTime": "2021-11-01",
+    "statusCd": "S01",
+    "shStatusCd": "S01",
+    "classStatusCd": "S01",
+    "chapterType": "T02",
+    "children": [
+      {
+        "id": 561,
+        "chapterNum": "01",
+        "chapterName": "概述",
+        "courseId": 1595,
+        "saveTime": "2021-11-01",
+        "statusCd": "S01",
+        "parentId": 542,
+        "shStatusCd": "S01",
+        "classStatusCd": "S01",
+        "chapterType": "T02"
+      }
+    ]
+  },
+  {
+    "id": 543,
+    "chapterNum": "04",
+    "chapterName": "触发器",
+    "courseId": 1595,
+    "saveTime": "2021-11-01",
+    "statusCd": "S01",
+    "shStatusCd": "S01",
+    "classStatusCd": "S01",
+    "chapterType": "T02",
+    "children": [
+      {
+        "id": 562,
+        "chapterNum": "01",
+        "chapterName": "概述",
+        "courseId": 1595,
+        "saveTime": "2021-11-01",
+        "statusCd": "S01",
+        "parentId": 543,
+        "shStatusCd": "S01",
+        "classStatusCd": "S01",
+        "chapterType": "T02"
+      }
+    ]
+  },
+  {
+    "id": 544,
+    "chapterNum": "05",
+    "chapterName": "时序逻辑电路",
+    "courseId": 1595,
+    "saveTime": "2021-11-01",
+    "statusCd": "S01",
+    "shStatusCd": "S01",
+    "classStatusCd": "S01",
+    "chapterType": "T02",
+    "children": [
+      {
+        "id": 563,
+        "chapterNum": "01",
+        "chapterName": "概述",
+        "courseId": 1595,
+        "saveTime": "2021-11-01",
+        "statusCd": "S01",
+        "parentId": 544,
+        "shStatusCd": "S01",
+        "classStatusCd": "S01",
+        "chapterType": "T02"
+      }
+    ]
+  },
+  {
+    "id": 545,
+    "chapterNum": "06",
+    "chapterName": "脉冲波形的产生和整形",
+    "courseId": 1595,
+    "saveTime": "2021-11-01",
+    "statusCd": "S01",
+    "shStatusCd": "S01",
+    "classStatusCd": "S01",
+    "chapterType": "T02",
+    "children": [
+      {
+        "id": 564,
+        "chapterNum": "01",
+        "chapterName": "概述",
+        "courseId": 1595,
+        "saveTime": "2021-11-01",
+        "statusCd": "S01",
+        "parentId": 545,
+        "shStatusCd": "S01",
+        "classStatusCd": "S01",
+        "chapterType": "T02"
+      },
+      {
+        "id": 567,
+        "chapterNum": "02",
+        "chapterName": "练习",
+        "courseId": 1595,
+        "saveTime": "2021-11-01",
+        "statusCd": "S01",
+        "parentId": 545,
+        "shStatusCd": "S01",
+        "classStatusCd": "S01",
+        "chapterType": "T02"
+      }
+    ]
+  },
+  {
+    "id": 548,
+    "chapterNum": "03",
+    "chapterName": "数制和码制",
+    "courseId": 1595,
+    "saveTime": "2021-11-01",
+    "statusCd": "S01",
+    "shStatusCd": "S01",
+    "classStatusCd": "S01",
+    "chapterType": "T02",
+    "children": [
+      {
+        "id": 565,
+        "chapterNum": "01",
+        "chapterName": "概述",
+        "courseId": 1595,
+        "saveTime": "2021-11-01",
+        "statusCd": "S01",
+        "parentId": 548,
+        "shStatusCd": "S01",
+        "classStatusCd": "S01",
+        "chapterType": "T02"
+      },
+      {
+        "id": 566,
+        "chapterNum": "02",
+        "chapterName": "练习",
+        "courseId": 1595,
+        "saveTime": "2021-11-01",
+        "statusCd": "S01",
+        "parentId": 548,
+        "shStatusCd": "S01",
+        "classStatusCd": "S01",
+        "chapterType": "T02"
+      }
+    ]
+  }
+]
